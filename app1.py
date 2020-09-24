@@ -5,7 +5,7 @@ interactive English dictionary
 This application is for the beginner's who wants to search meaning of some English words
 The data format used for developing this dictionary is in JSON[which looks like a python dictionary]
 While building this application it has been kept in mind that the user might enter some wrong
-words, and this application also suggests the user what they are actually looking for!!!
+jffcvvjvords, and this application also suggests the user what they are actually looking for!!!
 
 Enjoy the Application
 """
@@ -22,10 +22,9 @@ def similarity_ratio(parameter: str):
     print(close_match)
     resulted_close_match = close_match[0]
     print(resulted_close_match)
-    print(f"Are you looking for {resulted_close_match}, please double check ")
-    return resulted_close_match
-
-    # if seq_match > 8:
+    if len(get_close_matches(parameter, store_data.keys())) > 0:
+        print("Did you mean %s instead?" % get_close_matches(parameter, store_data.keys())[0])
+        return "Did you mean %s instead?" % get_close_matches(parameter, store_data.keys())[0]
 
 
 def dictate(parameter: list):
@@ -35,13 +34,10 @@ def dictate(parameter: list):
     if parameter in store_data:
         parsed_data = store_data[parameter]
         print(parsed_data)
-        return parsed_data
     elif similarity_ratio(parameter) in store_data:
         word_1 = input("Enter a word: ")
         dictate(word_1)
-    else:
-        print("The word entered doesnt exist, Please double check it")
-        return "The word entered doesnt exist, Please double check it"
+    return True
 
 
 if __name__ == "__main__":
